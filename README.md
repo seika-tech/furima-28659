@@ -4,8 +4,8 @@
 
 | Column         | Type   | Options                                       |
 | -------------  | ------ | --------------------------------------------- |
-| name           | string | null: false                                   |
-| email          | string | null: false, unique: true	                    |
+| name           | string | null: false,encrypted_password                                   |
+| email          | string | null: false, unique: true,encrypted_password	                    |
 | password       | string | null: false, unique: true, encrypted_password |
 | last_name      | string | null: false                                   |
 | first_name     | string | null: false                                   |
@@ -24,15 +24,14 @@
 
 | Column              | Type      | Options                       |
 | ------------------  | --------- | ----------------------------- |
-| user                | references| null: false, foreign_key: true|
 | product name        | string    | null: false                   |
 | product description | string    | null: false                   |
-| category            | string    | null: false                   |
-| product condition   | string    | null: false                   |
-| delivery fee        | string    | null: false                   |
-| delivery area       | string    | null: false                   |
+| category            | integer   | null: false                   |
+| product condition   | integer   | null: false                   |
+| delivery fee        | integer   | null: false                   |
+| delivery area       | integer   | null: false                   |
 | days                | integer   | null: false                   |
-
+| price               | integer   | null: false　　　　　　　　　　　 |
 
 
 ### Association
@@ -64,7 +63,7 @@
 | building_name| references |                                |
 | phone_number | string     | null: false, unique: true      |
 | purchase     | references | null: false, foreign_key: true |
-| prefectures  |　string　　 | null: false                    |       
+| prefectures  |　integer 　 | null: false                    |       
 ### Association
 
 - belongs_to :buy
