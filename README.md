@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column         | Type   | Options                                       |
-| -------------  | ------ | --------------------------------------------- |
-| name           | string | null: false,encrypted_password                                   |
-| email          | string | null: false, unique: true,encrypted_password	                    |
-| password       | string | null: false, unique: true, encrypted_password |
-| last_name      | string | null: false                                   |
-| first_name     | string | null: false                                   |
-| last_name_kana | string | null: false                                   |
-| first_name_kana| string | mull: false                                   |
-| birth_date     | date   | null: false                                   |
+| Column         　　| Type   | Options                                       |
+| -------------  　　| ------ | --------------------------------------------- |
+| name           　　| string | null: false,encrypted_password                |
+| email          　　| string | null: false, unique: true	                    |
+| encrypted_password| string | null: false, unique: true　　　　　　　　　　　　　|
+| last_name      　　| string | null: false                                   |
+| first_name     　　| string | null: false                                   |
+| last_name_kana 　　| string | null: false                                   |
+| first_name_kana　　| string | mull: false                                   |
+| birth_date     　　| date   | null: false                                   |
 
 
 
@@ -22,17 +22,17 @@
 
 ## items　テーブル
 
-| Column              | Type      | Options                       |
-| ------------------  | --------- | ----------------------------- |
-| product name        | string    | null: false                   |
-| product description | string    | null: false                   |
-| category            | integer   | null: false                   |
-| product condition   | integer   | null: false                   |
-| delivery fee        | integer   | null: false                   |
-| delivery area       | integer   | null: false                   |
-| days                | integer   | null: false                   |
-| price               | integer   | null: false　　　　　　　　　　　 |
-
+| Column                 | Type      | Options                       |
+| ---------------------  | --------- | ----------------------------- |
+| product_name           | string    | null: false                   |
+| product_description    | string    | null: false                   |
+| category_id            | integer   | null: false                   |
+| product_condition_id   | integer   | null: false                   |
+| delivery_fee_id        | integer   | null: false                   |
+| delivery_area_id       | integer   | null: false                   |
+| days_id                | integer   | null: false                   |
+| price                  | integer   | null: false　　　　　　　　　　　 |
+| user                   |references | null: false, foreign_key: true|
 
 ### Association
 
@@ -56,14 +56,15 @@
 
 ## addresses テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| post_code    | string     | null: false                    |
-| city         | integer    | null: false                    |
-| building_name| references |                                |
-| phone_number | string     | null: false, unique: true      |
-| purchase     | references | null: false, foreign_key: true |
-| prefectures  |　integer 　 | null: false                    |       
+| Column        |   Type     | Options                        |
+| ------------  | ---------- | ------------------------------ |
+| post_code     | string     | null: false                    |
+| city          | string     | null: false                    |
+| building_name |  string    |                                |
+| phone_number  | string     | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
+| prefectures_id|　integer 　 | null: false                    |
+| address       | string     | null: false                    |
 ### Association
 
 - belongs_to :buy
