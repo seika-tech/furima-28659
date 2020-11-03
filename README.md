@@ -4,7 +4,7 @@
 
 | Column         　　| Type   | Options                                       |
 | -------------  　　| ------ | --------------------------------------------- |
-| name           　　| string | null: false,encrypted_password                |
+| name           　　| string | null: false　　　　　　　　　　　　                |
 | email          　　| string | null: false, unique: true	                    |
 | encrypted_password| string | null: false, unique: true　　　　　　　　　　　　　|
 | last_name      　　| string | null: false                                   |
@@ -63,7 +63,7 @@
 | building_name |  string    |                                |
 | phone_number  | string     | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
-| prefectures_id|　integer 　 | null: false                    |
+| prefecture_id|　integer 　 | null: false                    |
 | address       | string     | null: false                    |
 ### Association
 
