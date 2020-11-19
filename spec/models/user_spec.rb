@@ -9,11 +9,6 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "000000"
-       @user.password_confirmation = "000000"
-      expect(@user).to be_valid
-      end
     end
 
     context '新規登録がうまくいかないとき' do
@@ -43,11 +38,37 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      it "passwordが6文字以上であれば登録できない" do
+        @user.password = "000000"
+       @user.password_confirmation = "000000"
+      expect(@user).to be_valid
+      end
      
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
   @user.valid?
   expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it "first_nameが空だと登録できない" do
+        @user.first_name = ""
+  @user.valid?
+  expect(@user.errors.full_messages).to include("First name can't be blank")
+      end
+      it "last_nameが空だと登録できない" do
+        @user.last_name = ""
+  @user.valid?
+  expect(@user.errors.full_messages).to include("Last name can't be blank")
+      end
+      it "first_name_kanaが空だと登録できない" do
+        @user.first_name_kana = ""
+  @user.valid?
+  expect(@user.errors.full_messages).to include("First name kana can't be blank")
+      end
+      it "birth_dateが空だと登録できない" do
+        @user.birth_date = ""
+  @user.valid?
+  expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
     end
   end
