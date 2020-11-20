@@ -9,6 +9,11 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
       end
+      it "passwordが6文字以上であれば登録できる" do
+        @user.password = "000000"
+       @user.password_confirmation = "000000"
+      expect(@user).to be_valid
+      end
     end
 
     context '新規登録がうまくいかないとき' do
@@ -38,11 +43,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it "passwordが6文字以上であれば登録できない" do
-        @user.password = "000000"
-       @user.password_confirmation = "000000"
-      expect(@user).to be_valid
-      end
+      
      
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
