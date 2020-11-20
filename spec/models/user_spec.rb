@@ -9,9 +9,9 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "000000"
-       @user.password_confirmation = "000000"
+      it "passwordが6文字以上かつ半角英数混合であれば登録できであれば登録できる" do
+        @user.password = "111aaa"
+       @user.password_confirmation = "111aaa"
       expect(@user).to be_valid
       end
     end
@@ -38,13 +38,6 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it 'password:半角英数混合(半角英語のみ)' do
-        @user.password = 'aaaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
-      end
-      
-     
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
   @user.valid?
