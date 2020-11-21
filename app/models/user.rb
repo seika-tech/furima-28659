@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   validates :password,format: { with: /\A[a-zA-Z0-9]+\z/ }
 
+  validates :email, uniqueness: true
+
 
   with_options presence: true, format: { with:/\A[ァ-ヶー－]+\z/, message: '全角カタカナで入力してください' } do
     validates :first_name_kana

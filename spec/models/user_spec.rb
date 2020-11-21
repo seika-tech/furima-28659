@@ -27,6 +27,11 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
+      it "emailは@を含んでないと登録できないこと" do
+        @user.email = "＠"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it "passwordが空では登録できない" do
         @user.password = ""
         @user.valid?
@@ -63,6 +68,21 @@ describe User do
         @user.birth_date = ""
   @user.valid?
   expect(@user.errors.full_messages).to include("Birth date can't be blank")
+      end
+      it "passwordが英語のみでは登録できないこと" do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "passwordが数字のみでは登録できないこと" do
+        @user.password = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "passwordが全角では登録できないこと" do
+        @user.password = 'AAAAAA'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
     end
   end
